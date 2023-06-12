@@ -1,0 +1,17 @@
+package com.marcinplonski.conferenceapp.users.service;
+
+import com.marcinplonski.conferenceapp.users.model.User;
+
+import java.util.List;
+
+public interface UserService {
+    List<User> getUsers();
+
+    User getUser(Long id);
+
+    User addUser(User user);
+
+    void deleteUser(Long id);
+
+    User patchUser(Long id, User user);
+}
