@@ -1,19 +1,21 @@
 package com.marcinplonski.conferenceapp.prelections.service;
 
 import com.marcinplonski.conferenceapp.prelections.model.Prelection;
-import com.marcinplonski.conferenceapp.users.model.User;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public interface PrelectionService {
 
-    List<Prelection> getPrelection();
+    List<Prelection> getPrelections();
 
-    Prelection getPrelection(Long id);
+    Prelection getPrelections(Long id);
 
     Prelection addPrelection(Prelection prelection);
 
     void deletePrelection(Long id);
 
     Prelection patchPrelection(Long id, Prelection prelection);
+
+    List<Prelection> getPrelectionsByStartTime(LocalTime localTime);
 }

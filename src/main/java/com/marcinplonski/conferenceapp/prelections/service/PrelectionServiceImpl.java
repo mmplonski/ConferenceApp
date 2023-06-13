@@ -6,6 +6,7 @@ import com.marcinplonski.conferenceapp.prelections.model.Prelection;
 import com.marcinplonski.conferenceapp.prelections.repository.PrelectionRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -18,12 +19,12 @@ public class PrelectionServiceImpl implements PrelectionService {
     }
 
     @Override
-    public List<Prelection> getPrelection() {
+    public List<Prelection> getPrelections() {
         return prelectionRepository.findAll();
     }
 
     @Override
-    public Prelection getPrelection(Long id) {
+    public Prelection getPrelections(Long id) {
         return prelectionRepository.findById(id).orElseThrow(() -> new PrelectionException(PrelectionError.PRELECTION_NOT_FOUND));
     }
 
@@ -45,4 +46,11 @@ public class PrelectionServiceImpl implements PrelectionService {
             return prelectionRepository.save(prelectionFromDB);
         }).orElseThrow(() -> new PrelectionException(PrelectionError.PRELECTION_NOT_FOUND));
     }
+
+    @Override
+    public List<Prelection> getPrelectionsByStartTime(LocalTime localTime) {
+        return prelectionRepository.getPrelectionsByStartTime(localTime);
+    }
+
+
 }

@@ -2,7 +2,6 @@ package com.marcinplonski.conferenceapp.prelections.controller;
 
 import com.marcinplonski.conferenceapp.prelections.model.Prelection;
 import com.marcinplonski.conferenceapp.prelections.service.PrelectionService;
-import com.marcinplonski.conferenceapp.users.model.User;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +19,12 @@ public class PrelectionController {
 
     @GetMapping
     public List<Prelection> getPrelections() {
-        return prelectionService.getPrelection();
+        return prelectionService.getPrelections();
     }
 
     @GetMapping("/{id}")
     public Prelection getPrelection(@PathVariable Long id) {
-        return prelectionService.getPrelection(id);
+        return prelectionService.getPrelections(id);
     }
 
     @PostMapping
