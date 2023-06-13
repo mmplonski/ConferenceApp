@@ -89,7 +89,14 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public void deleteReservation(Long id) {
-        reservationRepository.findById(id).orElseThrow(() -> new ReservationException(ReservationError.RESERVATION_NOT_FOUND));
+        Reservation reservation = reservationRepository.findById(id).orElseThrow(() -> new ReservationException(ReservationError.RESERVATION_NOT_FOUND));
+        reservationRepository.delete(reservation);
+
+        Prelection prelection = prelectionService.getPrelection(reservation.getPrelectionId());
+        if (prelection.getAvailableSeats() < 5) {
+            prelection.setAvailableSeats(prelection.getAvailableSeats()+1);
+            prelectionService.patchPrelection(prelection.getId(), prelection);
+        }
     }
 
     @Override
