@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface PrelectionRepository extends JpaRepository<Prelection, Long> {
     List<Prelection> getPrelectionsByStartTime(LocalTime localTime);
+    boolean existsById(Long id);
 }

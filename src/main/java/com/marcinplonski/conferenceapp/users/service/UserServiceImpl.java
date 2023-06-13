@@ -32,7 +32,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addUser(User user) {
         validateUserLogin(user);
+        validateUserEmail(user);
         return userRepository.save(user);
+    }
+
+    private void validateUserEmail(User user) {
+        User userByEmail = userRepository.getUserByEmail(user.getEmail());
+        if (userByEmail != null && (!user.getLogin().equals(userByEmail.getLogin()))) {
+            throw new UserException(UserError.USER_EMAIL_TAKEN);
+        }
     }
 
     private void validateUserLogin(User user) {
@@ -57,5 +65,20 @@ public class UserServiceImpl implements UserService {
             }
             return userRepository.save(userFromDB);
         }).orElseThrow(() -> new UserException(UserError.USER_NOT_FOUND));
+    }
+
+    @Override
+    public boolean isUserExistsByLoginAndEmail(String login, String email) {
+        return userRepository.existsUserByLoginAndEmail(login, email);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepository.getUserByEmail(email);
+    }
+
+    @Override
+    public User getUserByLogin(String login) {
+        return userRepository.getUserByLogin(login);
     }
 }

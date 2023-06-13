@@ -1,9 +1,7 @@
 package com.marcinplonski.conferenceapp.reservations.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 
 @Entity
 public class Reservation {
@@ -11,8 +9,16 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
     private Long prelectionId;
+    private Long userId;
+
+    public Reservation(Long prelectionId, Long userId) {
+        this.prelectionId = prelectionId;
+        this.userId = userId;
+    }
+
+    public Reservation() {
+    }
 
     public Long getId() {
         return id;
@@ -22,14 +28,6 @@ public class Reservation {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public Long getPrelectionId() {
         return prelectionId;
     }
@@ -37,4 +35,14 @@ public class Reservation {
     public void setPrelectionId(Long prelectionId) {
         this.prelectionId = prelectionId;
     }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }
+
+

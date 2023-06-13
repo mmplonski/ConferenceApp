@@ -19,6 +19,14 @@ public class User {
     @Email
     private String email;
 
+    public User() {
+    }
+
+    public User(String login, String email) {
+        this.login = login;
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }

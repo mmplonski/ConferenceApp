@@ -19,12 +19,12 @@ public class PrelectionController {
 
     @GetMapping
     public List<Prelection> getPrelections() {
-        return prelectionService.getPrelections();
+        return prelectionService.getPrelection();
     }
 
     @GetMapping("/{id}")
     public Prelection getPrelection(@PathVariable Long id) {
-        return prelectionService.getPrelections(id);
+        return prelectionService.getPrelection(id);
     }
 
     @PostMapping

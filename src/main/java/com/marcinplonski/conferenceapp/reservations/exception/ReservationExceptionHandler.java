@@ -14,6 +14,8 @@ public class ReservationExceptionHandler {
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         if (ReservationError.RESERVATION_NOT_FOUND.equals(e.getReservationError())) {
             httpStatus = HttpStatus.NOT_FOUND;
+        } else if (ReservationError.RESERVATION_ALREADY_MAKE.equals(e.getReservationError()) || ReservationError.RESERVATION_CANCEL_NO_FREE_PLACES.equals(e.getReservationError())) {
+            httpStatus = HttpStatus.CONFLICT;
         }
         return ResponseEntity.status(httpStatus).body(new ErrorInfo(e.getReservationError().getMessage()));
     }

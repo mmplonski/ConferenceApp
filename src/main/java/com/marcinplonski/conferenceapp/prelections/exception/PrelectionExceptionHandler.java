@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class PrelectionExceptionHandler {
 
-    @ExceptionHandler(value = UserException.class)
+    @ExceptionHandler(value = PrelectionException.class)
     public ResponseEntity<ErrorInfo> handleException(PrelectionException e) {
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         if (PrelectionError.PRELECTION_NOT_FOUND.equals(e.getPrelectionError())) {

@@ -1,6 +1,0 @@
-2023-06-13 10:17:46 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRELECTION" not found (this database is empty); SQL statement:
-insert into prelection (available_seats,description,end_time,path,start_time,id) values (?,?,?,?,?,default) [42104-214]
-2023-06-13 10:17:48 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRELECTION" not found (this database is empty); SQL statement:
-insert into prelection (available_seats,description,end_time,path,start_time,id) values (?,?,?,?,?,default) [42104-214]

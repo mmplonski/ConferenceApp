@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface PrelectionService {
 
-    List<Prelection> getPrelections();
+    List<Prelection> getPrelection();
 
-    Prelection getPrelections(Long id);
+    Prelection getPrelection(Long id);
 
     Prelection addPrelection(Prelection prelection);
 
@@ -18,4 +18,6 @@ public interface PrelectionService {
     Prelection patchPrelection(Long id, Prelection prelection);
 
     List<Prelection> getPrelectionsByStartTime(LocalTime localTime);
+
+    boolean isPrelectionExists(Long prelectionId);
 }

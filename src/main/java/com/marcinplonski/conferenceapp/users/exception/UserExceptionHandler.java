@@ -13,7 +13,7 @@ public class UserExceptionHandler {
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         if (UserError.USER_NOT_FOUND.equals(e.getUserError())) {
             httpStatus = HttpStatus.NOT_FOUND;
-        } else if (UserError.USER_LOGIN_TAKEN.equals(e.getUserError())) {
+        } else if (UserError.USER_LOGIN_TAKEN.equals(e.getUserError()) || UserError.USER_EMAIL_TAKEN.equals(e.getUserError())) {
             httpStatus = HttpStatus.CONFLICT;
         }
         return ResponseEntity.status(httpStatus).body(new ErrorInfo(e.getUserError().getMessage()));

@@ -19,12 +19,12 @@ public class PrelectionServiceImpl implements PrelectionService {
     }
 
     @Override
-    public List<Prelection> getPrelections() {
+    public List<Prelection> getPrelection() {
         return prelectionRepository.findAll();
     }
 
     @Override
-    public Prelection getPrelections(Long id) {
+    public Prelection getPrelection(Long id) {
         return prelectionRepository.findById(id).orElseThrow(() -> new PrelectionException(PrelectionError.PRELECTION_NOT_FOUND));
     }
 
@@ -50,6 +50,11 @@ public class PrelectionServiceImpl implements PrelectionService {
     @Override
     public List<Prelection> getPrelectionsByStartTime(LocalTime localTime) {
         return prelectionRepository.getPrelectionsByStartTime(localTime);
+    }
+
+    @Override
+    public boolean isPrelectionExists(Long prelectionId) {
+        return prelectionRepository.existsById(prelectionId);
     }
 
 

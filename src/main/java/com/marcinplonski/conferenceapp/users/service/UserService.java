@@ -14,4 +14,10 @@ public interface UserService {
     void deleteUser(Long id);
 
     User patchUser(Long id, User user);
+
+    boolean isUserExistsByLoginAndEmail(String login, String email);
+
+    User getUserByEmail(String email);
+
+    User getUserByLogin(String login);
 }

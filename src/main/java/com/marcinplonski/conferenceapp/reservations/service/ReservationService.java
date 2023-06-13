@@ -2,6 +2,8 @@ package com.marcinplonski.conferenceapp.reservations.service;
 
 
 import com.marcinplonski.conferenceapp.reservations.model.Reservation;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -10,7 +12,7 @@ public interface ReservationService {
 
     Reservation getReservation(Long id);
 
-    Reservation addReservation(Reservation reservation);
+    Reservation addReservation(String login, String email, Long prelectionId);
 
     void deleteReservation(Long id);
 

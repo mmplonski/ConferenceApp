@@ -1,6 +1,7 @@
 package com.marcinplonski.conferenceapp.reservations.controller;
 
 import com.marcinplonski.conferenceapp.reservations.model.Reservation;
+import com.marcinplonski.conferenceapp.reservations.model.ReservationDto;
 import com.marcinplonski.conferenceapp.reservations.service.ReservationService;
 import com.marcinplonski.conferenceapp.users.model.User;
 import jakarta.validation.Valid;
@@ -28,9 +29,9 @@ public class ReservationController {
         return reservationService.getReservation(id);
     }
 
-    @PostMapping
-    public Reservation addReservation(@RequestBody @Valid Reservation reservation) {
-        return reservationService.addReservation(reservation);
+    @PostMapping("/{prelectionId}")
+    public Reservation addReservation(@PathVariable Long prelectionId, @RequestBody ReservationDto reservationDto) {
+        return reservationService.addReservation(reservationDto.getLogin(), reservationDto.getEmail(), prelectionId);
     }
 
     @DeleteMapping("/{id}")
