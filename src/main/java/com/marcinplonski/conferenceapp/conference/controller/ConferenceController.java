@@ -19,4 +19,9 @@ public class ConferenceController {
     public String getConference() {
         return conferenceService.getConference();
     }
+
+    @GetMapping("/registerUsers")
+    public String getRegisterUsers() {
+        return conferenceService.getRegisterUsers();
+    }
 }

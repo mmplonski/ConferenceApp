@@ -1,6 +1,7 @@
 package com.marcinplonski.conferenceapp.conference.service;
 
 import com.marcinplonski.conferenceapp.prelections.service.PrelectionService;
+import com.marcinplonski.conferenceapp.users.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
@@ -9,9 +10,11 @@ import java.time.LocalTime;
 public class ConferenceServiceImpl implements ConferenceService {
 
     private final PrelectionService prelectionService;
+    private final UserService userService;
 
-    public ConferenceServiceImpl(PrelectionService prelectionService) {
+    public ConferenceServiceImpl(PrelectionService prelectionService, UserService userService) {
         this.prelectionService = prelectionService;
+        this.userService = userService;
     }
 
     @Override
@@ -37,6 +40,18 @@ public class ConferenceServiceImpl implements ConferenceService {
         });
         stringBuilder.append("</pre>");
 
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String getRegisterUsers() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<pre> ZAREJESTROWANI UŻYTKOWNICY\n");
+
+        userService.getUsers().stream().forEach(user -> {
+            stringBuilder.append("\n ID:" + user.getId()  + "\n Login: " + user.getLogin() + "\n Email: " +  user.getEmail() + "\n");
+        });
+        stringBuilder.append("</pre>");
         return stringBuilder.toString();
     }
 }
