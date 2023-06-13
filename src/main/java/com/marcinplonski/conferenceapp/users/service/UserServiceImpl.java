@@ -5,6 +5,8 @@ import com.marcinplonski.conferenceapp.users.exception.UserException;
 import com.marcinplonski.conferenceapp.users.model.User;
 import com.marcinplonski.conferenceapp.users.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -50,7 +52,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User patchUser(Long id, User user) {
         return userRepository.findById(id).map(userFromDB -> {
-            userFromDB.setEmail(user.getEmail());
+            if (!ObjectUtils.isEmpty(user.getEmail())) {
+                userFromDB.setEmail(user.getEmail());
+            }
             return userRepository.save(userFromDB);
         }).orElseThrow(() -> new UserException(UserError.USER_NOT_FOUND));
     }
