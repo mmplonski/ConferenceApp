@@ -17,14 +17,9 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-    @GetMapping
-    public List<Reservation> getReservations() {
-        return reservationService.getReservations();
-    }
-
-    @GetMapping("/{id}")
-    public Reservation getReservation(@PathVariable Long id) {
-        return reservationService.getReservation(id);
+    @GetMapping("/{userId}")
+    public String getUserReservations(@PathVariable Long userId) {
+        return reservationService.getUserReservations(userId);
     }
 
     @PostMapping("/{prelectionId}")
@@ -36,6 +31,16 @@ public class ReservationController {
     public void deleteReservation(@PathVariable Long id) {
         reservationService.deleteReservation(id);
     }
+
+    @GetMapping
+    public List<Reservation> getReservations() {
+        return reservationService.getReservations();
+    }
+
+//    @GetMapping("/{id}")
+//    public Reservation getReservation(@PathVariable Long id) {
+//        return reservationService.getReservation(id);
+//    }
 
     @PatchMapping("/{id}")
     public Reservation patchReservation(@PathVariable Long id, @RequestBody Reservation reservation) {

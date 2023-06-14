@@ -18,4 +18,7 @@ public interface ReservationService {
 
     Long count();
 
+    List<Reservation> getReservationsByUserId(Long userId);
+
+    String getUserReservations(Long userId);
 }

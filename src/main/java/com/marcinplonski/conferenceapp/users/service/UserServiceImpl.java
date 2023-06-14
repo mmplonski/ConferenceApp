@@ -1,5 +1,7 @@
 package com.marcinplonski.conferenceapp.users.service;
 
+import com.marcinplonski.conferenceapp.reservations.model.Reservation;
+import com.marcinplonski.conferenceapp.reservations.service.ReservationService;
 import com.marcinplonski.conferenceapp.users.exception.UserError;
 import com.marcinplonski.conferenceapp.users.exception.UserException;
 import com.marcinplonski.conferenceapp.users.model.User;
@@ -78,5 +80,7 @@ public class UserServiceImpl implements UserService {
     public User getUserByLogin(String login) {
         return userRepository.getUserByLogin(login);
     }
+
+
 
 }

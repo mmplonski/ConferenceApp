@@ -128,4 +128,21 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationRepository.count();
     }
 
+    @Override
+    public List<Reservation> getReservationsByUserId(Long userId) {
+        return reservationRepository.findAll();
+    }
+
+    @Override
+    public String getUserReservations(Long userId) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<pre>REZERWACJE UŻYTKOWNIKA: " + userService.getUser(userId).getLogin() + "\n");
+        reservationRepository.findAllByUserId(userId).stream().forEach(reservation -> {
+            Prelection prelection = prelectionService.getPrelection(reservation.getPrelectionId());
+            stringBuilder.append(prelection.getPath() + " " + prelection.getDescription() + " " + prelection.getStartTime() + "-" + prelection.getEndTime() + "\n");
+        });
+        stringBuilder.append("</pre>");
+        return stringBuilder.toString();
+    }
+
 }
