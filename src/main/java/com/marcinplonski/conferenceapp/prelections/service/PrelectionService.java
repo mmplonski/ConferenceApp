@@ -1,5 +1,6 @@
 package com.marcinplonski.conferenceapp.prelections.service;
 
+import com.marcinplonski.conferenceapp.prelections.model.Path;
 import com.marcinplonski.conferenceapp.prelections.model.Prelection;
 
 import java.time.LocalTime;
@@ -20,4 +21,6 @@ public interface PrelectionService {
     List<Prelection> getPrelectionsByStartTime(LocalTime localTime);
 
     boolean isPrelectionExists(Long prelectionId);
+
+    List<Prelection> getPrelectionsByPath(Path path);
 }

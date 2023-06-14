@@ -121,4 +121,5 @@ public class ReservationServiceImpl implements ReservationService {
     public Long count() {
         return reservationRepository.count();
     }
+
 }

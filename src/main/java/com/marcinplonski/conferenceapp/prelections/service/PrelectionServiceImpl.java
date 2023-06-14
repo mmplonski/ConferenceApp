@@ -2,6 +2,7 @@ package com.marcinplonski.conferenceapp.prelections.service;
 
 import com.marcinplonski.conferenceapp.prelections.exception.PrelectionError;
 import com.marcinplonski.conferenceapp.prelections.exception.PrelectionException;
+import com.marcinplonski.conferenceapp.prelections.model.Path;
 import com.marcinplonski.conferenceapp.prelections.model.Prelection;
 import com.marcinplonski.conferenceapp.prelections.repository.PrelectionRepository;
 import org.springframework.stereotype.Service;
@@ -55,6 +56,11 @@ public class PrelectionServiceImpl implements PrelectionService {
     @Override
     public boolean isPrelectionExists(Long prelectionId) {
         return prelectionRepository.existsById(prelectionId);
+    }
+
+    @Override
+    public List<Prelection> getPrelectionsByPath(Path path) {
+        return prelectionRepository.getPrelectionsByPath(path);
     }
 
 

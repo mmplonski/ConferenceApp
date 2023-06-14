@@ -30,8 +30,8 @@ public class ConferenceController {
         return conferenceService.getStatementsByLectures();
     }
 
-//    @GetMapping("/registerUsers/statements/paths")
-//    public String getRegisterUsers() {
-//        return conferenceService.getRegisterUsers();
-//    }
+    @GetMapping("/registerUsers/statements/paths")
+    public String getStatementsByPaths() {
+        return conferenceService.getStatementsByPaths();
+    }
 }

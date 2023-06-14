@@ -6,4 +6,6 @@ public interface ConferenceService {
     String getRegisterUsers();
 
     String getStatementsByLectures();
+
+    String getStatementsByPaths();
 }

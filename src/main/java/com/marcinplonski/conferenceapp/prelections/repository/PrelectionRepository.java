@@ -1,5 +1,6 @@
 package com.marcinplonski.conferenceapp.prelections.repository;
 
+import com.marcinplonski.conferenceapp.prelections.model.Path;
 import com.marcinplonski.conferenceapp.prelections.model.Prelection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -11,4 +12,6 @@ import java.util.List;
 public interface PrelectionRepository extends JpaRepository<Prelection, Long> {
     List<Prelection> getPrelectionsByStartTime(LocalTime localTime);
     boolean existsById(Long id);
+
+    List<Prelection> getPrelectionsByPath(Path path);
 }
