@@ -1,5 +1,6 @@
 package com.marcinplonski.conferenceapp.users.service;
 
+import com.marcinplonski.conferenceapp.prelections.model.Prelection;
 import com.marcinplonski.conferenceapp.users.model.User;
 
 import java.util.List;
@@ -20,4 +21,7 @@ public interface UserService {
     User getUserByEmail(String email);
 
     User getUserByLogin(String login);
+
+    Long countAllUsers();
+
 }

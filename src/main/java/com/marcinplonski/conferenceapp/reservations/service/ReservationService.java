@@ -17,4 +17,9 @@ public interface ReservationService {
     void deleteReservation(Long id);
 
     Reservation patchReservation(Long id, Reservation reservation);
+
+    Long countByPrelectionId(Long prelectionId);
+
+    Long count();
+
 }

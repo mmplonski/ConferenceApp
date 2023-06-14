@@ -24,4 +24,14 @@ public class ConferenceController {
     public String getRegisterUsers() {
         return conferenceService.getRegisterUsers();
     }
+
+    @GetMapping("/registerUsers/statements/lectures")
+    public String getStatementsByLectures() {
+        return conferenceService.getStatementsByLectures();
+    }
+
+//    @GetMapping("/registerUsers/statements/paths")
+//    public String getRegisterUsers() {
+//        return conferenceService.getRegisterUsers();
+//    }
 }

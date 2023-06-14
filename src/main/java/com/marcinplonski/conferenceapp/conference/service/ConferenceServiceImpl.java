@@ -1,20 +1,27 @@
 package com.marcinplonski.conferenceapp.conference.service;
 
+import com.marcinplonski.conferenceapp.prelections.model.Prelection;
 import com.marcinplonski.conferenceapp.prelections.service.PrelectionService;
+import com.marcinplonski.conferenceapp.reservations.service.ReservationService;
+import com.marcinplonski.conferenceapp.users.model.User;
 import com.marcinplonski.conferenceapp.users.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalTime;
+import java.util.List;
 
 @Service
 public class ConferenceServiceImpl implements ConferenceService {
 
     private final PrelectionService prelectionService;
     private final UserService userService;
+    private final ReservationService reservationService;
 
-    public ConferenceServiceImpl(PrelectionService prelectionService, UserService userService) {
+    public ConferenceServiceImpl(PrelectionService prelectionService, UserService userService, ReservationService reservationService) {
         this.prelectionService = prelectionService;
         this.userService = userService;
+        this.reservationService = reservationService;
     }
 
     @Override
@@ -53,5 +60,30 @@ public class ConferenceServiceImpl implements ConferenceService {
         });
         stringBuilder.append("</pre>");
         return stringBuilder.toString();
+    }
+
+    @Override
+    public String getStatementsByLectures() {
+        StringBuilder stringBuilder = new StringBuilder();
+        List<User> users = userService.getUsers();
+        stringBuilder.append("<pre> ZESTAWIENIE WYKŁADÓW WG ZAINTERESOWANIA\n");
+        prelectionService.getPrelection().stream().forEach(prelection -> {
+            stringBuilder.append(prelection.getPath() + ": " + prelection.getDescription() + " Zainteresowanie: " + calculateInterestByLectures(prelection, users) + "\n");
+        });
+
+        stringBuilder.append("</pre>");
+        return stringBuilder.toString();
+    }
+
+    private String calculateInterestByLectures(Prelection prelection, List<User> users) {
+        Long numberOfUsersInPrelection = reservationService.countByPrelectionId(prelection.getId());
+        Long allUsersWithReservation = reservationService.count();
+        if (numberOfUsersInPrelection != 0) {
+            double l = ((double) numberOfUsersInPrelection / allUsersWithReservation) * 100;
+            return Math.round(l) + "%";
+         } else {
+            return "0%";
+        }
+
     }
 }

@@ -4,4 +4,6 @@ public interface ConferenceService {
     String getConference();
 
     String getRegisterUsers();
+
+    String getStatementsByLectures();
 }

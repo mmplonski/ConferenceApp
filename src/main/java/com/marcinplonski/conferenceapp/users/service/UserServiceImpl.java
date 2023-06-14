@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 import java.util.List;
 
 @Service
+
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -80,5 +81,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByLogin(String login) {
         return userRepository.getUserByLogin(login);
+    }
+
+    @Override
+    public Long countAllUsers() {
+        return userRepository.count();
     }
 }

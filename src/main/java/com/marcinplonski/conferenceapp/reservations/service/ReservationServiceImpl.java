@@ -111,4 +111,14 @@ public class ReservationServiceImpl implements ReservationService {
             return reservationRepository.save(reservationFromDB);
         }).orElseThrow(() -> new ReservationException(ReservationError.RESERVATION_NOT_FOUND));
     }
+
+    @Override
+    public Long countByPrelectionId(Long prelectionId) {
+        return reservationRepository.countAllByPrelectionId(prelectionId);
+    }
+
+    @Override
+    public Long count() {
+        return reservationRepository.count();
+    }
 }
