@@ -17,7 +17,7 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/user/{userId}")
     public String getUserReservations(@PathVariable Long userId) {
         return reservationService.getUserReservations(userId);
     }
@@ -37,13 +37,15 @@ public class ReservationController {
         return reservationService.getReservations();
     }
 
-//    @GetMapping("/{id}")
-//    public Reservation getReservation(@PathVariable Long id) {
-//        return reservationService.getReservation(id);
-//    }
+/*
+    @GetMapping("/{id}")
+    public Reservation getReservation(@PathVariable Long id) {
+        return reservationService.getReservation(id);
+    }
 
     @PatchMapping("/{id}")
     public Reservation patchReservation(@PathVariable Long id, @RequestBody Reservation reservation) {
         return reservationService.patchReservation(id, reservation);
     }
+*/
 }

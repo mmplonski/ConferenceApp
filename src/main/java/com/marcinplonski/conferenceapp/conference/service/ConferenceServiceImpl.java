@@ -81,25 +81,17 @@ public class ConferenceServiceImpl implements ConferenceService {
         List<User> users = userService.getUsers();
         stringBuilder.append("<pre> ZESTAWIENIE WYKŁADÓW WG SCIEŻEK\n");
         Path[] paths = Path.values();
-//        prelectionService.getPrelection().stream().forEach(prelection -> {
-//            stringBuilder.append(prelection.getPath() + ": " + prelection.getDescription() + " Zainteresowanie: " + calculateInterestByLectures(prelection, users) + "\n");
-//        });
         for (Path path : paths) {
             stringBuilder.append(path.getDesc() + " Zainteresowanie: " + calculateInterestByPaths(path));
         }
-
-
         stringBuilder.append("</pre>");
         return stringBuilder.toString();
     }
 
     private String calculateInterestByPaths(Path path) {
         List<Prelection> prelectionsByPath = prelectionService.getPrelectionsByPath(path);
-
         long numberOfUsersInPath = calculateReservationsByPath(prelectionsByPath);
         Long allUsersWithReservation = reservationService.count();
-
-
         if (numberOfUsersInPath != 0) {
             double l = ((double) numberOfUsersInPath / allUsersWithReservation) * 100;
             return Math.round(l) + "%\n";
@@ -110,7 +102,6 @@ public class ConferenceServiceImpl implements ConferenceService {
 
     private long calculateReservationsByPath(List<Prelection> prelectionsByPath) {
         long count = 0l;
-
         for (Prelection prelection : prelectionsByPath) {
             count += reservationService.countByPrelectionId(prelection.getId());
         }
@@ -126,6 +117,6 @@ public class ConferenceServiceImpl implements ConferenceService {
          } else {
             return "0%";
         }
-
     }
+
 }
