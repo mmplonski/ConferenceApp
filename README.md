@@ -1,6 +1,7 @@
 # ConferenceApp
 ## Krótki opis
 Jest to aplikacja do zarządzania konferencjami, napisana w Javie 17 przy pomocy SpringBoota.
+Należy upewnić się, że komputer z którego korzystamy ma zainstalowaną tą wersje Javy. 
 Aplikacja korzysta z bazy danych H2. W repozytorium znajduje się plik ConferenceApp.postman_collection.json w którym znajduje się 
 przygotowana kolekcja endpointów
 ## Uruchomienie
@@ -10,8 +11,9 @@ Aplikację możną uruchomić na dwa sposoby:
 Należy sklonować projekt https://github.com/mmplonski/ConferenceApp
 2. Dla systemów Linux/MacOS
   Za pomocą skryptu start.sh.
-  Należy przejść w terminalu do lokalizacji w której znajduje się plik start.sh(lokalizacja projektu)i 
-  wpisać sh start.sh
+  Należy pobrać projekt a następnie przejść w terminalu do lokalizacji projektu, i wpisać polecenie sh start.sh.
+  Dla systemów Windows
+  Należy pobrać projekt a następnie uruchomić plik start.bat
   
 ## Założenia
 1. Klient jest rejestrowany w momencie wykonania rezerwacji na prelekcje. Jeśli w bazie nie znajduje się klient o podanym loginie i emailu
