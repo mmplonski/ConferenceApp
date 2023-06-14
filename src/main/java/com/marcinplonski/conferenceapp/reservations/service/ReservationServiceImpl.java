@@ -2,17 +2,15 @@ package com.marcinplonski.conferenceapp.reservations.service;
 
 import com.marcinplonski.conferenceapp.prelections.model.Prelection;
 import com.marcinplonski.conferenceapp.prelections.service.PrelectionService;
+import com.marcinplonski.conferenceapp.reservations.EmailNotification;
 import com.marcinplonski.conferenceapp.reservations.exception.ReservationException;
 import com.marcinplonski.conferenceapp.reservations.model.Reservation;
 import com.marcinplonski.conferenceapp.reservations.exception.ReservationError;
 import com.marcinplonski.conferenceapp.reservations.repository.ReservationRepository;
 import com.marcinplonski.conferenceapp.users.model.User;
 import com.marcinplonski.conferenceapp.users.service.UserService;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -24,11 +22,13 @@ public class ReservationServiceImpl implements ReservationService {
     private final ReservationRepository reservationRepository;
     private final UserService userService;
     private final PrelectionService prelectionService;
+    private final EmailNotification emailNotification;
 
-    public ReservationServiceImpl(ReservationRepository reservationRepository, UserService userService, PrelectionService prelectionService) {
+    public ReservationServiceImpl(ReservationRepository reservationRepository, UserService userService, PrelectionService prelectionService, EmailNotification emailNotification) {
         this.reservationRepository = reservationRepository;
         this.userService = userService;
         this.prelectionService = prelectionService;
+        this.emailNotification = emailNotification;
     }
 
     @Override
@@ -46,7 +46,13 @@ public class ReservationServiceImpl implements ReservationService {
         validateUserAndPrelection(login, email, prelectionId);
         decreseSeats(prelectionId);
         Reservation reservation = new Reservation(prelectionId, userService.getUserByEmail(email).getId());
-        return reservationRepository.save(reservation);
+        Reservation save = reservationRepository.save(reservation);
+        sendNotification(email, login);
+        return save;
+    }
+
+    private void sendNotification(String email, String login) {
+        emailNotification.sendNotification(email, login);
     }
 
     private void decreseSeats(Long prelectionId) {
