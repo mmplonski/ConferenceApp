@@ -17,6 +17,7 @@ public class PrelectionController {
         this.prelectionService = prelectionService;
     }
 
+    /*
     @GetMapping
     public List<Prelection> getPrelections() {
         return prelectionService.getPrelection();
@@ -41,4 +42,5 @@ public class PrelectionController {
     public Prelection patchPrelection(@PathVariable Long id, @RequestBody Prelection prelection) {
         return prelectionService.patchPrelection(id, prelection);
     }
+     */
 }

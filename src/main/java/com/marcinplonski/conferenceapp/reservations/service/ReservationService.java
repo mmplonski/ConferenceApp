@@ -1,11 +1,6 @@
 package com.marcinplonski.conferenceapp.reservations.service;
 
-
-import com.marcinplonski.conferenceapp.prelections.model.Prelection;
 import com.marcinplonski.conferenceapp.reservations.model.Reservation;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.List;
 
 public interface ReservationService {

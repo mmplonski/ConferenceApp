@@ -1,6 +1,5 @@
 package com.marcinplonski.conferenceapp.prelections.exception;
 
-import com.marcinplonski.conferenceapp.users.exception.UserError;
 
 public class PrelectionException extends RuntimeException {
 

@@ -8,7 +8,6 @@ import com.marcinplonski.conferenceapp.users.model.User;
 import com.marcinplonski.conferenceapp.users.service.UserService;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.util.List;
 

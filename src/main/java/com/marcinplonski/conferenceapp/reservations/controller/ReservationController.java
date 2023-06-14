@@ -3,8 +3,6 @@ package com.marcinplonski.conferenceapp.reservations.controller;
 import com.marcinplonski.conferenceapp.reservations.model.Reservation;
 import com.marcinplonski.conferenceapp.reservations.model.ReservationDto;
 import com.marcinplonski.conferenceapp.reservations.service.ReservationService;
-import com.marcinplonski.conferenceapp.users.model.User;
-import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
